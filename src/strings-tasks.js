@@ -460,8 +460,8 @@ function getStringFromTemplate(firstName, lastName) {
  */
 function extractNameFromTemplate(value) {
   const arr = value.split(/\s*,\s*/);
-  const newStr = arr[1, 2].join('');
-  let strWComas = newStr.replace(/[\s.,%?!]/g,);
+  const arrSelect = arr[1];
+  const strWComas = arrSelect.replace(/!/g, '');
   return strWComas;
 }
 
@@ -476,8 +476,14 @@ function extractNameFromTemplate(value) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  let newStr = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] !== '<' && str[i] !== '>') {
+      newStr += str[i];
+    }
+  }
+  return newStr;
 }
 
 /**
@@ -495,8 +501,9 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  const arr = str.split(/\s*;\s*/);
+  return arr;
 }
 
 /**
